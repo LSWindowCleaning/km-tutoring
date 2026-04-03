@@ -298,6 +298,13 @@ h3 {
   align-items: start;
 }
 
+.booking-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 34px;
+  align-items: start;
+}
+
 .about-cards,
 .booking-boxes {
   display: grid;
@@ -388,13 +395,18 @@ h3 {
   padding: 26px;
 }
 
+.booking-form-card {
+  background: #ffffff;
+}
+
 form {
   display: grid;
   gap: 14px;
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid #dfcfc9;
   background: #fefcfc;
@@ -410,7 +422,8 @@ textarea::placeholder {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--blush);
 }
@@ -440,7 +453,8 @@ textarea:focus {
 @media (max-width: 980px) {
   .hero-grid,
   .two-column,
-  .cards-3 {
+  .cards-3,
+  .booking-layout {
     grid-template-columns: 1fr;
   }
 

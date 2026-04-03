@@ -43,7 +43,7 @@
           </p>
 
           <div class="hero-buttons">
-            <a href="https://calendly.com/kessem-mechali/30min" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book a Session</a>
+            <a href="#booking" class="btn btn-primary">Book a Session</a>
             <a href="#services" class="btn btn-secondary">View Services</a>
           </div>
 
@@ -172,49 +172,79 @@
     </section>
 
     <section id="booking" class="section">
-      <div class="container two-column">
-        <div>
+      <div class="container booking-layout">
+        <div class="booking-copy">
           <p class="section-label">Booking</p>
-          <h2>Make booking simple and fast</h2>
+          <h2>Tell us a bit about the student before booking</h2>
           <p>
-            Fast booking matters. Add your Calendly or Acuity Scheduling link below so families
-            can book without extra back-and-forth.
+            Fill out the form below and then click <strong>Book Now</strong>. You will be taken
+            to Calendly with the answers already filled in.
           </p>
 
-          <div class="booking-boxes">
-            <div class="info-card">
-  <h3>Calendly</h3>
-  <p>Book a session directly online.</p>
-  <a href="https://calendly.com/kessem-mechali/30min" class="text-link" target="_blank" rel="noopener noreferrer">
-    Book with Calendly
-  </a>
-</div>
-
-            <div class="info-card">
-              <h3>Acuity Scheduling</h3>
-              <p>Paste your Acuity Scheduling booking link here.</p>
-              <a href="#" class="text-link">Add Acuity link</a>
-            </div>
+          <div class="value-box small-value-box">
+            <h3>How this works</h3>
+            <p>
+              You complete the student details here first. When you click Book Now, the
+              information is sent into the Calendly booking page automatically so booking is
+              faster and easier.
+            </p>
           </div>
         </div>
 
-        <div class="session-card">
-          <h3>Session Options</h3>
+        <div class="contact-form-card booking-form-card">
+          <h3>Booking Request</h3>
 
-          <div class="mini-card">
-            <strong>One-on-One Tutoring</strong>
-            <p>Personalized sessions based on the student’s learning needs and school material.</p>
-          </div>
+          <form id="bookingForm">
+            <input type="text" id="parentName" placeholder="Parent full name" required />
+            <input type="email" id="parentEmail" placeholder="Parent email address" required />
 
-          <div class="mini-card">
-            <strong>Homework Help</strong>
-            <p>Support with assignments, review questions, and challenging concepts.</p>
-          </div>
+            <input
+              type="text"
+              id="address"
+              placeholder="Complete address (postal code, city)"
+              required
+            />
 
-          <div class="mini-card">
-            <strong>Test Preparation</strong>
-            <p>Focused review sessions to improve readiness and reduce stress before tests.</p>
-          </div>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Phone number"
+              required
+            />
+
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Student name"
+            />
+
+            <input
+              type="text"
+              id="subjects"
+              placeholder="Which subjects does your child need support in?"
+            />
+
+            <input
+              type="text"
+              id="grade"
+              placeholder="What is the student’s current grade level?"
+            />
+
+            <select id="sessionType">
+              <option value="">Online or In-person?</option>
+              <option value="Online">Online</option>
+              <option value="In-person">In-person</option>
+              <option value="Open to either">Open to either</option>
+            </select>
+
+            <textarea
+              id="notes"
+              rows="5"
+              placeholder="Additional notes"
+            ></textarea>
+
+            <button type="submit" class="btn btn-peach">Book Now</button>
+          </form>
         </div>
       </div>
     </section>
@@ -284,8 +314,7 @@
         <div class="faq-item">
           <h3>How do I book a session?</h3>
           <p>
-            You can book through Calendly or Acuity, or contact KM Tutoring directly to discuss
-            availability.
+            Complete the booking form on this page, then click Book Now to continue into Calendly.
           </p>
         </div>
       </div>
@@ -302,9 +331,9 @@
           </p>
 
           <div class="contact-info">
-            <p><strong>Phone:</strong> <a href="tel:6475810466"> 647-581-0466</a></p> 
-            <p><strong>Email:</strong> <a href="kessem.mechali@icloud.com">kessem.mechali@icloud.com</a></p>
-            <p><strong>Location:</strong> Vaughan / Online across Canada</p>
+            <p><strong>Phone:</strong> <a href="tel:0000000000">Add phone number</a></p>
+            <p><strong>Email:</strong> <a href="mailto:hello@kmtutoring.ca">Add email address</a></p>
+            <p><strong>Location:</strong> Ottawa / Online across Canada</p>
           </div>
 
           <div class="value-box small-value-box">

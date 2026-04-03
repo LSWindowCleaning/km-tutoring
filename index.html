@@ -1,403 +1,386 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KM Tutoring Preview</title>
-  <meta name="description" content="KM Tutoring - personalized tutoring for Grades 8 to 10." />
-  <style>
-    :root{
-      --bg:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --line:#e2e8f0;
-      --soft:#f8fafc;
-      --soft2:#eef6ff;
-      --accent:#0f172a;
-      --accent2:#0369a1;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.5;
-    }
-    a{text-decoration:none;color:inherit}
-    .container{max-width:1180px;margin:0 auto;padding:0 20px}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.9);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:16px 0;gap:20px;
-    }
-    .brand-title{font-size:1.2rem;font-weight:800}
-    .brand-sub{font-size:.9rem;color:var(--muted)}
-    .navlinks{display:flex;gap:24px;align-items:center}
-    .navlinks a{font-size:.95rem;color:#334155}
-    .btn{
-      display:inline-block;
-      background:var(--accent);
-      color:white;
-      padding:14px 22px;
-      border-radius:18px;
-      font-weight:600;
-    }
-    .btn.secondary{
-      background:white;color:#334155;border:1px solid #cbd5e1;
-    }
-    .hero{
-      background:linear-gradient(135deg,#f0f9ff 0%, #ffffff 50%, #eef2ff 100%);
-      padding:72px 0 88px;
-    }
-    .hero-grid{
-      display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
-    }
-    .pill{
-      display:inline-block;
-      padding:8px 12px;
-      background:white;
-      border:1px solid #dbeafe;
-      border-radius:999px;
-      color:#475569;
-      font-size:.92rem;
-      box-shadow:0 4px 18px rgba(15,23,42,.04);
-    }
-    h1{
-      font-size:clamp(2.5rem,6vw,4.4rem);
-      line-height:1.02;
-      margin:18px 0 0;
-      letter-spacing:-0.04em;
-    }
-    .lead{
-      margin-top:22px;
-      font-size:1.08rem;
-      color:#475569;
-      max-width:760px;
-    }
-    .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-    .stats{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;
-    }
-    .card{
-      background:white;border:1px solid var(--line);border-radius:22px;padding:18px;
-      box-shadow:0 12px 30px rgba(15,23,42,.05);
-    }
-    .stat-num{font-size:1.5rem;font-weight:800}
-    .stat-text{font-size:.93rem;color:var(--muted);margin-top:4px}
-    .photo-card{
-      background:white;border:1px solid var(--line);border-radius:28px;padding:16px;
-      box-shadow:0 18px 40px rgba(15,23,42,.08);
-    }
-    .photo-box{
-      aspect-ratio:4/5;border-radius:22px;border:2px dashed #cbd5e1;background:#f1f5f9;
-      display:flex;align-items:center;justify-content:center;text-align:center;color:#64748b;padding:24px;font-weight:600;
-    }
-    .section{padding:84px 0}
-    .section.soft{background:var(--soft)}
-    .eyebrow{
-      color:var(--accent2);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-size:.8rem;
-      font-weight:800;
-    }
-    h2{
-      font-size:clamp(2rem,4vw,3rem);
-      line-height:1.06;
-      letter-spacing:-0.03em;
-      margin:10px 0 0;
-    }
-    .section-text{color:#475569;font-size:1.05rem;margin-top:20px}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    ul.clean{padding-left:18px;margin:14px 0 0;color:#475569}
-    li{margin:8px 0}
-    .review{background:#f8fafc}
-    .faq-item{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
-    .contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px}
-    input, textarea{
-      width:100%;padding:14px 16px;border-radius:16px;border:1px solid #cbd5e1;
-      font:inherit;background:white;
-    }
-    textarea{min-height:140px;resize:vertical}
-    form{display:grid;gap:14px}
-    .footer{
-      border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.95rem;
-    }
-    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    .small{font-size:.95rem;color:var(--muted)}
-    .spaced > * + *{margin-top:14px}
-    @media (max-width: 900px){
-      .hero-grid,.grid-2,.grid-3,.contact-grid{grid-template-columns:1fr}
-      .navlinks{display:none}
-      .stats{grid-template-columns:1fr}
-      .hero{padding-top:50px}
-    }
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <div class="container nav">
-      <div>
-        <div class="brand-title">KM Tutoring</div>
-        <div class="brand-sub">Personalized support for Grades 8 to 10</div>
-      </div>
-      <nav class="navlinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#booking">Booking</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn" href="#booking">Book a Session</a>
-    </div>
-  </header>
+export default function KMTutoringWebsite() {
+  const subjects = [
+    "Math",
+    "Science",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "Study Skills",
+    "Exam Preparation",
+  ];
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="pill">Math tutor Ottawa • Online physics tutoring Canada</div>
-          <h1>Helping students in Grades 8 to 10 build confidence and improve results.</h1>
-          <p class="lead">
-            KM Tutoring offers focused, supportive tutoring in math and science for middle and high school students.
-            Sessions are designed to strengthen understanding, boost confidence, and help students perform better on assignments, quizzes, and exams.
-          </p>
-          <div class="cta-row">
-            <a class="btn" href="#booking">Book a Session</a>
-            <a class="btn secondary" href="#services">View Services</a>
+  const testimonials = [
+    {
+      name: "Parent of Grade 9 Student",
+      quote:
+        "Kessem was patient, organized, and made the material much easier to understand. We saw a big improvement in confidence and grades.",
+    },
+    {
+      name: "Grade 10 Student",
+      quote:
+        "I used to feel lost in science, but sessions were clear and actually helpful. I felt much more prepared before tests.",
+    },
+    {
+      name: "Parent of Grade 8 Student",
+      quote:
+        "Very reliable, professional, and encouraging. My child looked forward to the sessions and stayed much more motivated.",
+    },
+  ];
+
+  const faqs = [
+    {
+      q: "Do you offer online sessions?",
+      a: "Yes. Online tutoring is available and designed to be simple, interactive, and convenient for students and families.",
+    },
+    {
+      q: "What grades do you teach?",
+      a: "KM Tutoring focuses on Grades 8 to 10, with support in core subjects and academic skill-building.",
+    },
+    {
+      q: "Do you help with test preparation?",
+      a: "Yes. Sessions can focus on homework support, concept review, test prep, and stronger study habits.",
+    },
+    {
+      q: "How do I book a session?",
+      a: "You can book through Calendly or Acuity, or contact KM Tutoring directly to discuss availability.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#F7F3F2] text-[#4B3A4E]">
+      <header className="sticky top-0 z-50 border-b border-[#E7D9D6] bg-[#F7F3F2]/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+          <div>
+            <div className="text-xl font-bold tracking-tight text-[#4B3A4E]">KM Tutoring</div>
+            <div className="text-sm text-[#8D6C7D]">Personalized support for Grades 8 to 10</div>
           </div>
-          <div class="stats">
-            <div class="card">
-              <div class="stat-num">Grades 8-10</div>
-              <div class="stat-text">Focused academic support</div>
-            </div>
-            <div class="card">
-              <div class="stat-num">Online + In Person</div>
-              <div class="stat-text">Flexible session options</div>
-            </div>
-            <div class="card">
-              <div class="stat-num">Results Focused</div>
-              <div class="stat-text">Clear explanations and progress</div>
-            </div>
-          </div>
+
+          <nav className="hidden items-center gap-6 text-sm md:flex text-[#6E5868]">
+            <a href="#home" className="transition hover:text-[#4B3A4E]">Home</a>
+            <a href="#about" className="transition hover:text-[#4B3A4E]">About</a>
+            <a href="#services" className="transition hover:text-[#4B3A4E]">Services</a>
+            <a href="#booking" className="transition hover:text-[#4B3A4E]">Booking</a>
+            <a href="#contact" className="transition hover:text-[#4B3A4E]">Contact</a>
+          </nav>
+
+          <a
+            href="#booking"
+            className="rounded-2xl bg-[#CE8127] px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-[#B46F20]"
+          >
+            Book a Session
+          </a>
         </div>
-        <div>
-          <div class="photo-card">
-            <div class="photo-box">Replace this area with Kessem Mechali’s photo</div>
-            <div style="padding:16px 6px 6px">
-              <div style="font-size:1.25rem;font-weight:800">Kessem Mechali</div>
-              <div class="small">Tutor for Grades 8 to 10</div>
-              <p class="small" style="margin-top:12px">
-                Supportive, structured tutoring that helps students understand concepts clearly and feel more confident in school.
+      </header>
+
+      <main>
+        <section
+          id="home"
+          className="bg-gradient-to-br from-[#F7F3F2] via-[#F2E6E3] to-[#D8BFCE]"
+        >
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+            <div className="flex flex-col justify-center">
+              <div className="mb-4 inline-flex w-fit rounded-full border border-[#E8D2D8] bg-white/80 px-3 py-1 text-sm text-[#8D6C7D] shadow-sm">
+                Math tutor Ottawa • Online physics tutoring Canada
+              </div>
+              <h1 className="text-4xl font-bold tracking-tight text-[#4B3A4E] sm:text-5xl md:text-6xl">
+                Helping students in Grades 8 to 10 build confidence and improve results.
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#6E5868]">
+                KM Tutoring offers focused, supportive tutoring in math and science for middle and high school students. Sessions are designed to strengthen understanding, boost confidence, and help students perform better on assignments, quizzes, and exams.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#booking"
+                  className="rounded-2xl bg-[#CE8127] px-6 py-3 text-center font-medium text-white shadow-sm transition hover:bg-[#B46F20]"
+                >
+                  Book a Session
+                </a>
+                <a
+                  href="#services"
+                  className="rounded-2xl border border-[#DDB8B2] bg-white/70 px-6 py-3 text-center font-medium text-[#6E5868] transition hover:bg-white"
+                >
+                  View Services
+                </a>
+              </div>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl border border-[#E8D8D5] bg-white/85 p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-[#4B3A4E]">Grades 8-10</div>
+                  <div className="mt-1 text-sm text-[#8D6C7D]">Focused academic support</div>
+                </div>
+                <div className="rounded-2xl border border-[#E8D8D5] bg-white/85 p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-[#4B3A4E]">Online + In Person</div>
+                  <div className="mt-1 text-sm text-[#8D6C7D]">Flexible session options</div>
+                </div>
+                <div className="rounded-2xl border border-[#E8D8D5] bg-white/85 p-4 shadow-sm">
+                  <div className="text-2xl font-bold text-[#4B3A4E]">Results Focused</div>
+                  <div className="mt-1 text-sm text-[#8D6C7D]">Clear explanations and progress</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center">
+              <div className="w-full max-w-md rounded-[28px] border border-[#E8D8D5] bg-white/90 p-4 shadow-xl shadow-[#D8BFCE]/20">
+                <div className="aspect-[4/5] w-full overflow-hidden rounded-[22px] border border-dashed border-[#D8BFCE] bg-[#F5ECE8] flex items-center justify-center p-6 text-center text-[#8D6C7D]">
+                  Replace this area with Kessem Mechali’s photo
+                </div>
+                <div className="px-2 pb-2 pt-4">
+                  <div className="text-xl font-semibold text-[#4B3A4E]">Kessem Mechali</div>
+                  <div className="text-[#8D6C7D]">Tutor for Grades 8 to 10</div>
+                  <p className="mt-3 text-sm leading-6 text-[#6E5868]">
+                    Supportive, structured tutoring that helps students understand concepts clearly and feel more confident in school.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">About</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+                Why families trust KM Tutoring
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-[#6E5868]">
+                KM Tutoring was built to give students the kind of support many classrooms cannot always provide: personalized explanations, patience, and a plan that matches how each student learns best.
+              </p>
+              <p className="mt-4 leading-8 text-[#6E5868]">
+                Kessem Mechali works closely with students to break down difficult concepts, strengthen weak areas, and build academic confidence over time. The goal is not just to get through homework, but to help students feel more capable and independent.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="rounded-[28px] border border-[#E8D8D5] bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Tutor Story</h3>
+                <p className="mt-3 leading-7 text-[#6E5868]">
+                  Add Kessem’s personal story here: what inspired the tutoring business, what kind of students she enjoys working with, and how she approaches teaching in a calm and encouraging way.
+                </p>
+              </div>
+              <div className="rounded-[28px] border border-[#E8D8D5] bg-[#F2E6E3] p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Tutor Qualifications</h3>
+                <p className="mt-3 leading-7 text-[#6E5868]">
+                  Add academic background, teaching experience, relevant achievements, and any specific strengths in math, science, or test preparation.
+                </p>
+              </div>
+              <div className="rounded-[28px] border border-[#E8D8D5] bg-[#F0E6EE] p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Why Trust Kessem</h3>
+                <p className="mt-3 leading-7 text-[#6E5868]">
+                  Personalized support, strong communication, a consistent learning plan, and a focus on helping students improve both performance and confidence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="bg-[#F2E6E3] py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">Services</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+              Tutoring designed for real academic progress
+            </h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              <div className="rounded-[28px] border border-[#E5C9C1] bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Subjects Offered</h3>
+                <ul className="mt-4 space-y-2 text-[#6E5868]">
+                  {subjects.map((subject) => (
+                    <li key={subject}>• {subject}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-[28px] border border-[#E5C9C1] bg-[#F7F3F2] p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Levels</h3>
+                <p className="mt-4 leading-7 text-[#6E5868]">
+                  Primary focus is Grades 8 to 10. This section can be expanded later if you want to include earlier grades, senior high school, or university preparation.
+                </p>
+              </div>
+              <div className="rounded-[28px] border border-[#E5C9C1] bg-white p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-[#4B3A4E]">Pricing</h3>
+                <p className="mt-4 leading-7 text-[#6E5868]">
+                  Contact for pricing, or replace this text with a structured pricing model such as hourly sessions, bundles, or monthly plans.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-[28px] border border-[#E6C3C8] bg-[#F0E6EE] p-6">
+              <h3 className="text-xl font-semibold text-[#4B3A4E]">Clear value proposition</h3>
+              <p className="mt-3 leading-7 text-[#6E5868]">
+                This site is written to feel focused rather than too broad. It presents KM Tutoring as a tutoring service that helps Grades 8 to 10 students strengthen math and science skills, raise confidence, and improve test performance with structured one-on-one support.
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section class="section" id="about">
-      <div class="container grid-2">
-        <div>
-          <div class="eyebrow">About</div>
-          <h2>Why families trust KM Tutoring</h2>
-          <p class="section-text">
-            KM Tutoring was built to give students the kind of support many classrooms cannot always provide:
-            personalized explanations, patience, and a plan that matches how each student learns best.
-          </p>
-          <p class="section-text">
-            Kessem Mechali works closely with students to break down difficult concepts, strengthen weak areas,
-            and build academic confidence over time. The goal is not just to get through homework, but to help students feel more capable and independent.
-          </p>
-        </div>
-        <div class="spaced">
-          <div class="card">
-            <h3>Tutor Story</h3>
-            <p class="small">Add Kessem’s personal story here: what inspired the tutoring business, what kind of students she enjoys working with, and how she approaches teaching.</p>
-          </div>
-          <div class="card">
-            <h3>Tutor Qualifications</h3>
-            <p class="small">Add academic background, teaching experience, relevant achievements, and subject strengths in math, science, or test preparation.</p>
-          </div>
-          <div class="card">
-            <h3>Why Trust Kessem</h3>
-            <p class="small">Personalized support, strong communication, a consistent learning plan, and a focus on improving both performance and confidence.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft" id="services">
-      <div class="container">
-        <div class="eyebrow">Services</div>
-        <h2>Tutoring designed for real academic progress</h2>
-        <div class="grid-3" style="margin-top:34px">
-          <div class="card">
-            <h3>Subjects Offered</h3>
-            <ul class="clean">
-              <li>Math</li>
-              <li>Science</li>
-              <li>Physics</li>
-              <li>Chemistry</li>
-              <li>Biology</li>
-              <li>Study Skills</li>
-              <li>Exam Preparation</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Levels</h3>
-            <p class="small">Primary focus is Grades 8 to 10. This section can be expanded later if you want to include earlier grades, senior high school, or university preparation.</p>
-          </div>
-          <div class="card">
-            <h3>Pricing</h3>
-            <p class="small">Contact for pricing, or replace this with a structured pricing model such as hourly sessions, bundles, or monthly plans.</p>
-          </div>
-        </div>
-        <div class="card" style="margin-top:24px;background:#eff6ff;border-color:#dbeafe">
-          <h3>Clear value proposition</h3>
-          <p class="small" style="color:#334155">
-            This site is written to feel focused rather than broad. It presents KM Tutoring as helping Grades 8 to 10 students strengthen math and science skills, raise confidence, and improve test performance with structured one-on-one support.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="booking">
-      <div class="container grid-2">
-        <div>
-          <div class="eyebrow">Booking</div>
-          <h2>Make booking simple and fast</h2>
-          <p class="section-text">
-            Fast booking matters. Add your Calendly or Acuity Scheduling link below so families can book without extra back-and-forth.
-          </p>
-          <div class="spaced" style="margin-top:22px">
-            <div class="card">
-              <h3>Calendly</h3>
-              <p class="small">Paste your Calendly booking link here.</p>
+        <section id="booking" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">Booking</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+                Make booking simple and fast
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-[#6E5868]">
+                Fast booking matters. Add your Calendly or Acuity Scheduling link below so families can book without extra back-and-forth.
+              </p>
+              <div className="mt-6 space-y-4">
+                <div className="rounded-[24px] border border-[#E8D8D5] bg-white p-5 shadow-sm">
+                  <div className="font-semibold text-[#4B3A4E]">Calendly</div>
+                  <p className="mt-2 text-[#6E5868]">Paste your Calendly booking link here.</p>
+                  <a href="#" className="mt-3 inline-block text-[#CE8127] underline">
+                    Add Calendly link
+                  </a>
+                </div>
+                <div className="rounded-[24px] border border-[#E8D8D5] bg-white p-5 shadow-sm">
+                  <div className="font-semibold text-[#4B3A4E]">Acuity Scheduling</div>
+                  <p className="mt-2 text-[#6E5868]">Paste your Acuity Scheduling booking link here.</p>
+                  <a href="#" className="mt-3 inline-block text-[#CE8127] underline">
+                    Add Acuity link
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="card">
-              <h3>Acuity Scheduling</h3>
-              <p class="small">Paste your Acuity Scheduling booking link here.</p>
+
+            <div className="rounded-[28px] border border-[#E8D8D5] bg-white p-6 shadow-sm">
+              <h3 className="text-2xl font-semibold text-[#4B3A4E]">Session Options</h3>
+              <div className="mt-6 grid gap-4">
+                <div className="rounded-[22px] border border-[#E8D8D5] bg-[#F7F3F2] p-5">
+                  <div className="font-semibold text-[#4B3A4E]">One-on-One Tutoring</div>
+                  <p className="mt-2 text-[#6E5868]">
+                    Personalized sessions based on the student’s learning needs and school material.
+                  </p>
+                </div>
+                <div className="rounded-[22px] border border-[#E8D8D5] bg-[#F2E6E3] p-5">
+                  <div className="font-semibold text-[#4B3A4E]">Homework Help</div>
+                  <p className="mt-2 text-[#6E5868]">
+                    Support with assignments, review questions, and challenging concepts.
+                  </p>
+                </div>
+                <div className="rounded-[22px] border border-[#E8D8D5] bg-[#F0E6EE] p-5">
+                  <div className="font-semibold text-[#4B3A4E]">Test Preparation</div>
+                  <p className="mt-2 text-[#6E5868]">
+                    Focused review sessions to improve readiness and reduce stress before tests.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card" style="background:#f8fafc">
-          <h3 style="font-size:1.5rem;margin-top:0">Session Options</h3>
-          <div class="spaced" style="margin-top:18px">
-            <div class="card" style="box-shadow:none">
-              <h3>One-on-One Tutoring</h3>
-              <p class="small">Personalized sessions based on the student’s learning needs and school material.</p>
+        </section>
+
+        <section id="testimonials" className="bg-[#F0E6EE] py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">Testimonials</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+              What parents and students say
+            </h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {testimonials.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-[28px] border border-[#DFC3CC] bg-white p-6 shadow-sm"
+                >
+                  <p className="leading-7 text-[#6E5868]">“{item.quote}”</p>
+                  <div className="mt-4 font-semibold text-[#4B3A4E]">{item.name}</div>
+                </div>
+              ))}
             </div>
-            <div class="card" style="box-shadow:none">
-              <h3>Homework Help</h3>
-              <p class="small">Support with assignments, review questions, and challenging concepts.</p>
+          </div>
+        </section>
+
+        <section className="bg-[#F7F3F2] py-16 md:py-24">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">FAQs</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+              Common questions
+            </h2>
+            <div className="mt-10 space-y-4">
+              {faqs.map((item) => (
+                <div
+                  key={item.q}
+                  className="rounded-[22px] border border-[#E8D8D5] bg-white p-5 shadow-sm"
+                >
+                  <div className="text-lg font-semibold text-[#4B3A4E]">{item.q}</div>
+                  <p className="mt-2 leading-7 text-[#6E5868]">{item.a}</p>
+                </div>
+              ))}
             </div>
-            <div class="card" style="box-shadow:none">
-              <h3>Test Preparation</h3>
-              <p class="small">Focused review sessions to improve readiness and reduce stress before tests.</p>
+          </div>
+        </section>
+
+        <section id="contact" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D893A4]">Contact</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#4B3A4E] sm:text-4xl">
+                Get in touch
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-[#6E5868]">
+                Reach out to ask about subjects, availability, pricing, or the best tutoring plan for your child.
+              </p>
+              <div className="mt-6 space-y-3 text-[#6E5868]">
+                <div>
+                  <span className="font-semibold text-[#4B3A4E]">Phone:</span> Add phone number
+                </div>
+                <div>
+                  <span className="font-semibold text-[#4B3A4E]">Email:</span> Add email address
+                </div>
+                <div>
+                  <span className="font-semibold text-[#4B3A4E]">Location:</span> Ottawa / Online across Canada
+                </div>
+              </div>
+              <div className="mt-8 rounded-[24px] border border-[#E6C3C8] bg-[#F2E6E3] p-5">
+                <div className="font-semibold text-[#4B3A4E]">SEO foundation built in</div>
+                <p className="mt-2 leading-7 text-[#6E5868]">
+                  This layout includes natural keyword phrasing such as “math tutor Ottawa” and “online physics tutoring Canada,” while still sounding professional and parent-friendly.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-[#E8D8D5] bg-white p-6 shadow-sm">
+              <h3 className="text-2xl font-semibold text-[#4B3A4E]">Email Form</h3>
+              <form className="mt-6 space-y-4">
+                <input
+                  type="text"
+                  placeholder="Parent or student name"
+                  className="w-full rounded-[18px] border border-[#E0C9C5] bg-[#FDFBFA] px-4 py-3 text-[#4B3A4E] outline-none transition placeholder:text-[#A18491] focus:border-[#D893A4]"
+                />
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  className="w-full rounded-[18px] border border-[#E0C9C5] bg-[#FDFBFA] px-4 py-3 text-[#4B3A4E] outline-none transition placeholder:text-[#A18491] focus:border-[#D893A4]"
+                />
+                <input
+                  type="text"
+                  placeholder="Phone number"
+                  className="w-full rounded-[18px] border border-[#E0C9C5] bg-[#FDFBFA] px-4 py-3 text-[#4B3A4E] outline-none transition placeholder:text-[#A18491] focus:border-[#D893A4]"
+                />
+                <textarea
+                  placeholder="How can KM Tutoring help?"
+                  rows={5}
+                  className="w-full rounded-[18px] border border-[#E0C9C5] bg-[#FDFBFA] px-4 py-3 text-[#4B3A4E] outline-none transition placeholder:text-[#A18491] focus:border-[#D893A4]"
+                />
+                <button
+                  type="button"
+                  className="w-full rounded-[18px] bg-[#E5A38F] px-6 py-3 font-medium text-white transition hover:bg-[#D893A4]"
+                >
+                  Send Message
+                </button>
+              </form>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      </main>
 
-    <section class="section" id="testimonials">
-      <div class="container">
-        <div class="eyebrow">Testimonials</div>
-        <h2>What parents and students say</h2>
-        <div class="grid-3" style="margin-top:34px">
-          <div class="card review">
-            <p>“Kessem was patient, organized, and made the material much easier to understand. We saw a big improvement in confidence and grades.”</p>
-            <div style="margin-top:14px;font-weight:700">Parent of Grade 9 Student</div>
-          </div>
-          <div class="card review">
-            <p>“I used to feel lost in science, but sessions were clear and actually helpful. I felt much more prepared before tests.”</p>
-            <div style="margin-top:14px;font-weight:700">Grade 10 Student</div>
-          </div>
-          <div class="card review">
-            <p>“Very reliable, professional, and encouraging. My child looked forward to the sessions and stayed much more motivated.”</p>
-            <div style="margin-top:14px;font-weight:700">Parent of Grade 8 Student</div>
+      <footer className="border-t border-[#E8D8D5] bg-[#F7F3F2]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-[#8D6C7D] sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div>© 2026 KM Tutoring. All rights reserved.</div>
+          <div className="flex gap-4">
+            <a href="#home" className="hover:text-[#4B3A4E]">Home</a>
+            <a href="#about" className="hover:text-[#4B3A4E]">About</a>
+            <a href="#services" className="hover:text-[#4B3A4E]">Services</a>
+            <a href="#booking" className="hover:text-[#4B3A4E]">Booking</a>
+            <a href="#contact" className="hover:text-[#4B3A4E]">Contact</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section soft">
-      <div class="container" style="max-width:900px">
-        <div class="eyebrow">FAQs</div>
-        <h2>Common questions</h2>
-        <div class="spaced" style="margin-top:30px">
-          <div class="faq-item">
-            <div style="font-weight:700">Do you offer online sessions?</div>
-            <div class="small" style="margin-top:8px">Yes. Online tutoring is available and designed to be simple, interactive, and convenient for students and families.</div>
-          </div>
-          <div class="faq-item">
-            <div style="font-weight:700">What grades do you teach?</div>
-            <div class="small" style="margin-top:8px">KM Tutoring focuses on Grades 8 to 10, with support in core subjects and academic skill-building.</div>
-          </div>
-          <div class="faq-item">
-            <div style="font-weight:700">Do you help with test preparation?</div>
-            <div class="small" style="margin-top:8px">Yes. Sessions can focus on homework support, concept review, test prep, and stronger study habits.</div>
-          </div>
-          <div class="faq-item">
-            <div style="font-weight:700">How do I book a session?</div>
-            <div class="small" style="margin-top:8px">You can book through Calendly or Acuity, or contact KM Tutoring directly to discuss availability.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <div class="eyebrow">Contact</div>
-          <h2>Get in touch</h2>
-          <p class="section-text">
-            Reach out to ask about subjects, availability, pricing, or the best tutoring plan for your child.
-          </p>
-          <div class="spaced" style="margin-top:22px;color:#334155">
-            <div><strong>Phone:</strong> Add phone number</div>
-            <div><strong>Email:</strong> Add email address</div>
-            <div><strong>Location:</strong> Ottawa / Online across Canada</div>
-          </div>
-          <div class="card" style="margin-top:26px;background:#eff6ff;border-color:#dbeafe">
-            <h3>SEO foundation built in</h3>
-            <p class="small" style="color:#334155">This layout includes natural keyword phrasing such as “math tutor Ottawa” and “online physics tutoring Canada,” while still sounding professional and parent-friendly.</p>
-          </div>
-        </div>
-        <div class="card" style="background:#f8fafc">
-          <h3 style="font-size:1.5rem;margin-top:0">Email Form</h3>
-          <form style="margin-top:18px">
-            <input type="text" placeholder="Parent or student name" />
-            <input type="email" placeholder="Email address" />
-            <input type="text" placeholder="Phone number" />
-            <textarea placeholder="How can KM Tutoring help?"></textarea>
-            <button class="btn" type="button" style="border:none;cursor:pointer">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-row">
-      <div>© 2026 KM Tutoring. All rights reserved.</div>
-      <div style="display:flex;gap:18px;flex-wrap:wrap">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#booking">Booking</a>
-        <a href="#contact">Contact</a>
-      </div>
+      </footer>
     </div>
-  </footer>
-</body>
-</html>
+  );
+}

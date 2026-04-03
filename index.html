@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KM Tutoring Preview</title>
+  <meta name="description" content="KM Tutoring - personalized tutoring for Grades 8 to 10." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --soft:#f8fafc;
+      --soft2:#eef6ff;
+      --accent:#0f172a;
+      --accent2:#0369a1;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 0;gap:20px;
+    }
+    .brand-title{font-size:1.2rem;font-weight:800}
+    .brand-sub{font-size:.9rem;color:var(--muted)}
+    .navlinks{display:flex;gap:24px;align-items:center}
+    .navlinks a{font-size:.95rem;color:#334155}
+    .btn{
+      display:inline-block;
+      background:var(--accent);
+      color:white;
+      padding:14px 22px;
+      border-radius:18px;
+      font-weight:600;
+    }
+    .btn.secondary{
+      background:white;color:#334155;border:1px solid #cbd5e1;
+    }
+    .hero{
+      background:linear-gradient(135deg,#f0f9ff 0%, #ffffff 50%, #eef2ff 100%);
+      padding:72px 0 88px;
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
+    }
+    .pill{
+      display:inline-block;
+      padding:8px 12px;
+      background:white;
+      border:1px solid #dbeafe;
+      border-radius:999px;
+      color:#475569;
+      font-size:.92rem;
+      box-shadow:0 4px 18px rgba(15,23,42,.04);
+    }
+    h1{
+      font-size:clamp(2.5rem,6vw,4.4rem);
+      line-height:1.02;
+      margin:18px 0 0;
+      letter-spacing:-0.04em;
+    }
+    .lead{
+      margin-top:22px;
+      font-size:1.08rem;
+      color:#475569;
+      max-width:760px;
+    }
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .stats{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;
+    }
+    .card{
+      background:white;border:1px solid var(--line);border-radius:22px;padding:18px;
+      box-shadow:0 12px 30px rgba(15,23,42,.05);
+    }
+    .stat-num{font-size:1.5rem;font-weight:800}
+    .stat-text{font-size:.93rem;color:var(--muted);margin-top:4px}
+    .photo-card{
+      background:white;border:1px solid var(--line);border-radius:28px;padding:16px;
+      box-shadow:0 18px 40px rgba(15,23,42,.08);
+    }
+    .photo-box{
+      aspect-ratio:4/5;border-radius:22px;border:2px dashed #cbd5e1;background:#f1f5f9;
+      display:flex;align-items:center;justify-content:center;text-align:center;color:#64748b;padding:24px;font-weight:600;
+    }
+    .section{padding:84px 0}
+    .section.soft{background:var(--soft)}
+    .eyebrow{
+      color:var(--accent2);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.8rem;
+      font-weight:800;
+    }
+    h2{
+      font-size:clamp(2rem,4vw,3rem);
+      line-height:1.06;
+      letter-spacing:-0.03em;
+      margin:10px 0 0;
+    }
+    .section-text{color:#475569;font-size:1.05rem;margin-top:20px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    ul.clean{padding-left:18px;margin:14px 0 0;color:#475569}
+    li{margin:8px 0}
+    .review{background:#f8fafc}
+    .faq-item{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
+    .contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px}
+    input, textarea{
+      width:100%;padding:14px 16px;border-radius:16px;border:1px solid #cbd5e1;
+      font:inherit;background:white;
+    }
+    textarea{min-height:140px;resize:vertical}
+    form{display:grid;gap:14px}
+    .footer{
+      border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.95rem;
+    }
+    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .small{font-size:.95rem;color:var(--muted)}
+    .spaced > * + *{margin-top:14px}
+    @media (max-width: 900px){
+      .hero-grid,.grid-2,.grid-3,.contact-grid{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .stats{grid-template-columns:1fr}
+      .hero{padding-top:50px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div>
+        <div class="brand-title">KM Tutoring</div>
+        <div class="brand-sub">Personalized support for Grades 8 to 10</div>
+      </div>
+      <nav class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn" href="#booking">Book a Session</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">Math tutor Ottawa • Online physics tutoring Canada</div>
+          <h1>Helping students in Grades 8 to 10 build confidence and improve results.</h1>
+          <p class="lead">
+            KM Tutoring offers focused, supportive tutoring in math and science for middle and high school students.
+            Sessions are designed to strengthen understanding, boost confidence, and help students perform better on assignments, quizzes, and exams.
+          </p>
+          <div class="cta-row">
+            <a class="btn" href="#booking">Book a Session</a>
+            <a class="btn secondary" href="#services">View Services</a>
+          </div>
+          <div class="stats">
+            <div class="card">
+              <div class="stat-num">Grades 8-10</div>
+              <div class="stat-text">Focused academic support</div>
+            </div>
+            <div class="card">
+              <div class="stat-num">Online + In Person</div>
+              <div class="stat-text">Flexible session options</div>
+            </div>
+            <div class="card">
+              <div class="stat-num">Results Focused</div>
+              <div class="stat-text">Clear explanations and progress</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="photo-card">
+            <div class="photo-box">Replace this area with Kessem Mechali’s photo</div>
+            <div style="padding:16px 6px 6px">
+              <div style="font-size:1.25rem;font-weight:800">Kessem Mechali</div>
+              <div class="small">Tutor for Grades 8 to 10</div>
+              <p class="small" style="margin-top:12px">
+                Supportive, structured tutoring that helps students understand concepts clearly and feel more confident in school.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container grid-2">
+        <div>
+          <div class="eyebrow">About</div>
+          <h2>Why families trust KM Tutoring</h2>
+          <p class="section-text">
+            KM Tutoring was built to give students the kind of support many classrooms cannot always provide:
+            personalized explanations, patience, and a plan that matches how each student learns best.
+          </p>
+          <p class="section-text">
+            Kessem Mechali works closely with students to break down difficult concepts, strengthen weak areas,
+            and build academic confidence over time. The goal is not just to get through homework, but to help students feel more capable and independent.
+          </p>
+        </div>
+        <div class="spaced">
+          <div class="card">
+            <h3>Tutor Story</h3>
+            <p class="small">Add Kessem’s personal story here: what inspired the tutoring business, what kind of students she enjoys working with, and how she approaches teaching.</p>
+          </div>
+          <div class="card">
+            <h3>Tutor Qualifications</h3>
+            <p class="small">Add academic background, teaching experience, relevant achievements, and subject strengths in math, science, or test preparation.</p>
+          </div>
+          <div class="card">
+            <h3>Why Trust Kessem</h3>
+            <p class="small">Personalized support, strong communication, a consistent learning plan, and a focus on improving both performance and confidence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="services">
+      <div class="container">
+        <div class="eyebrow">Services</div>
+        <h2>Tutoring designed for real academic progress</h2>
+        <div class="grid-3" style="margin-top:34px">
+          <div class="card">
+            <h3>Subjects Offered</h3>
+            <ul class="clean">
+              <li>Math</li>
+              <li>Science</li>
+              <li>Physics</li>
+              <li>Chemistry</li>
+              <li>Biology</li>
+              <li>Study Skills</li>
+              <li>Exam Preparation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Levels</h3>
+            <p class="small">Primary focus is Grades 8 to 10. This section can be expanded later if you want to include earlier grades, senior high school, or university preparation.</p>
+          </div>
+          <div class="card">
+            <h3>Pricing</h3>
+            <p class="small">Contact for pricing, or replace this with a structured pricing model such as hourly sessions, bundles, or monthly plans.</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top:24px;background:#eff6ff;border-color:#dbeafe">
+          <h3>Clear value proposition</h3>
+          <p class="small" style="color:#334155">
+            This site is written to feel focused rather than broad. It presents KM Tutoring as helping Grades 8 to 10 students strengthen math and science skills, raise confidence, and improve test performance with structured one-on-one support.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container grid-2">
+        <div>
+          <div class="eyebrow">Booking</div>
+          <h2>Make booking simple and fast</h2>
+          <p class="section-text">
+            Fast booking matters. Add your Calendly or Acuity Scheduling link below so families can book without extra back-and-forth.
+          </p>
+          <div class="spaced" style="margin-top:22px">
+            <div class="card">
+              <h3>Calendly</h3>
+              <p class="small">Paste your Calendly booking link here.</p>
+            </div>
+            <div class="card">
+              <h3>Acuity Scheduling</h3>
+              <p class="small">Paste your Acuity Scheduling booking link here.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:#f8fafc">
+          <h3 style="font-size:1.5rem;margin-top:0">Session Options</h3>
+          <div class="spaced" style="margin-top:18px">
+            <div class="card" style="box-shadow:none">
+              <h3>One-on-One Tutoring</h3>
+              <p class="small">Personalized sessions based on the student’s learning needs and school material.</p>
+            </div>
+            <div class="card" style="box-shadow:none">
+              <h3>Homework Help</h3>
+              <p class="small">Support with assignments, review questions, and challenging concepts.</p>
+            </div>
+            <div class="card" style="box-shadow:none">
+              <h3>Test Preparation</h3>
+              <p class="small">Focused review sessions to improve readiness and reduce stress before tests.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="eyebrow">Testimonials</div>
+        <h2>What parents and students say</h2>
+        <div class="grid-3" style="margin-top:34px">
+          <div class="card review">
+            <p>“Kessem was patient, organized, and made the material much easier to understand. We saw a big improvement in confidence and grades.”</p>
+            <div style="margin-top:14px;font-weight:700">Parent of Grade 9 Student</div>
+          </div>
+          <div class="card review">
+            <p>“I used to feel lost in science, but sessions were clear and actually helpful. I felt much more prepared before tests.”</p>
+            <div style="margin-top:14px;font-weight:700">Grade 10 Student</div>
+          </div>
+          <div class="card review">
+            <p>“Very reliable, professional, and encouraging. My child looked forward to the sessions and stayed much more motivated.”</p>
+            <div style="margin-top:14px;font-weight:700">Parent of Grade 8 Student</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container" style="max-width:900px">
+        <div class="eyebrow">FAQs</div>
+        <h2>Common questions</h2>
+        <div class="spaced" style="margin-top:30px">
+          <div class="faq-item">
+            <div style="font-weight:700">Do you offer online sessions?</div>
+            <div class="small" style="margin-top:8px">Yes. Online tutoring is available and designed to be simple, interactive, and convenient for students and families.</div>
+          </div>
+          <div class="faq-item">
+            <div style="font-weight:700">What grades do you teach?</div>
+            <div class="small" style="margin-top:8px">KM Tutoring focuses on Grades 8 to 10, with support in core subjects and academic skill-building.</div>
+          </div>
+          <div class="faq-item">
+            <div style="font-weight:700">Do you help with test preparation?</div>
+            <div class="small" style="margin-top:8px">Yes. Sessions can focus on homework support, concept review, test prep, and stronger study habits.</div>
+          </div>
+          <div class="faq-item">
+            <div style="font-weight:700">How do I book a session?</div>
+            <div class="small" style="margin-top:8px">You can book through Calendly or Acuity, or contact KM Tutoring directly to discuss availability.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Get in touch</h2>
+          <p class="section-text">
+            Reach out to ask about subjects, availability, pricing, or the best tutoring plan for your child.
+          </p>
+          <div class="spaced" style="margin-top:22px;color:#334155">
+            <div><strong>Phone:</strong> Add phone number</div>
+            <div><strong>Email:</strong> Add email address</div>
+            <div><strong>Location:</strong> Ottawa / Online across Canada</div>
+          </div>
+          <div class="card" style="margin-top:26px;background:#eff6ff;border-color:#dbeafe">
+            <h3>SEO foundation built in</h3>
+            <p class="small" style="color:#334155">This layout includes natural keyword phrasing such as “math tutor Ottawa” and “online physics tutoring Canada,” while still sounding professional and parent-friendly.</p>
+          </div>
+        </div>
+        <div class="card" style="background:#f8fafc">
+          <h3 style="font-size:1.5rem;margin-top:0">Email Form</h3>
+          <form style="margin-top:18px">
+            <input type="text" placeholder="Parent or student name" />
+            <input type="email" placeholder="Email address" />
+            <input type="text" placeholder="Phone number" />
+            <textarea placeholder="How can KM Tutoring help?"></textarea>
+            <button class="btn" type="button" style="border:none;cursor:pointer">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© 2026 KM Tutoring. All rights reserved.</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

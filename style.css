@@ -243,11 +243,12 @@ h3 {
 }
 
 .hero-photo {
-  width: 100%;
+  width: calc(100% + 32px);
   height: 420px;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 22px 22px 0 0;
   display: block;
+  margin: -16px -16px 0 -16px;
 }
 
 .photo-card-text {

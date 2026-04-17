@@ -240,6 +240,7 @@ h3 {
 .hero-photo-card {
   border-radius: 28px;
   padding: 16px;
+  overflow: hidden;
 }
 
 .hero-photo {

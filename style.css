@@ -105,6 +105,7 @@ h3 {
   align-items: center;
   gap: 14px;
 }
+
 .brand-logo-wrap {
   width: 70px;
   height: 70px;
@@ -463,6 +464,40 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--blush);
+}
+
+.phone-input-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #dfcfc9;
+  background: #fefcfc;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.phone-prefix {
+  padding: 15px 14px;
+  color: #7a6672;
+  background: #f7efec;
+  border-right: 1px solid #dfcfc9;
+  font: inherit;
+  white-space: nowrap;
+}
+
+.phone-input-wrap input {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 15px 16px;
+  flex: 1;
+  width: 100%;
+}
+
+.phone-input-wrap input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 .site-footer {

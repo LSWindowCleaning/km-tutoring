@@ -42,7 +42,7 @@
     <section id="home" class="hero">
       <div class="container hero-grid">
         <div class="hero-text">
-          <div class="eyebrow-pill">Math tutor Vaughan • Online physics tutoring Canada</div>
+          <div class="eyebrow-pill">Math tutor Vaughan • Online tutoring Canada</div>
           <h1>Helping students in Grades 8 to 10 build confidence and improve results.</h1>
           <p class="hero-description">
             KM Tutoring offers focused, supportive tutoring in math and science for middle and
@@ -216,16 +216,21 @@
             <input
               type="text"
               id="address"
-              placeholder="Complete address (postal code, city)"
+              placeholder="Complete address"
+              autocomplete="off"
               required
             />
 
-            <input
-              type="tel"
-              id="phone"
-              placeholder="Phone number"
-              required
-            />
+            <div class="phone-input-wrap">
+              <span class="phone-prefix">+1</span>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="6471234567"
+                inputmode="numeric"
+                required
+              />
+            </div>
 
             <input
               type="text"
@@ -357,7 +362,10 @@
           <form>
             <input type="text" placeholder="Parent or student name" />
             <input type="email" placeholder="Email address" />
-            <input type="text" placeholder="Phone number" />
+            <div class="phone-input-wrap">
+              <span class="phone-prefix">+1</span>
+              <input type="tel" placeholder="6471234567" inputmode="numeric" />
+            </div>
             <textarea rows="5" placeholder="How can KM Tutoring help?"></textarea>
             <button type="button" class="btn btn-peach">Send Message</button>
           </form>
@@ -379,6 +387,10 @@
     </div>
   </footer>
 
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"
+    async
+  ></script>
   <script src="script.js"></script>
 </body>
 </html>
